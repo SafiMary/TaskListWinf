@@ -69,6 +69,8 @@
             this.textBoxLogin.Size = new System.Drawing.Size(233, 41);
             this.textBoxLogin.TabIndex = 2;
             this.textBoxLogin.Text = "Login";
+            this.textBoxLogin.Enter += new System.EventHandler(this.textBoxLogin_Enter);
+            this.textBoxLogin.Leave += new System.EventHandler(this.textBoxLogin_Leave);
             // 
             // maskedTxtBoxPass
             // 
@@ -79,6 +81,8 @@
             this.maskedTxtBoxPass.Size = new System.Drawing.Size(233, 41);
             this.maskedTxtBoxPass.TabIndex = 3;
             this.maskedTxtBoxPass.Text = "Password";
+            this.maskedTxtBoxPass.Enter += new System.EventHandler(this.maskedTxtBoxPass_Enter);
+            this.maskedTxtBoxPass.Leave += new System.EventHandler(this.maskedTxtBoxPass_Leave);
             // 
             // pictureBoxClose
             // 
@@ -104,6 +108,7 @@
             this.Controls.Add(this.labelAut);
             this.Controls.Add(this.buttonLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(500, 500);
             this.Name = "AuthorizationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

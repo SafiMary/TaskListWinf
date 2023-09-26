@@ -29,9 +29,13 @@ namespace TaskListWinf
         {
             string Login = textBoxLogin.Text;
             string Pass = maskedTxtBoxPass.Text;
-            DataTable table = new DataTable();
+            
             DB dBWork = new DB();
-            SQLiteCommand sqlCommand = new SQLiteCommand(findUsers, dBWork.getConnection());
+            //dBWork.OpenConnection();
+            //using (dBWork.getConnection()) {
+            dBWork.OpenConnection();   
+            DataTable table = new DataTable();
+            SQLiteCommand sqlCommand = new SQLiteCommand(findUsers,dBWork.getConnection());
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlCommand);
             sqlCommand.Parameters.Add("@name", DbType.String).Value = Login;
             sqlCommand.Parameters.Add("@pass", DbType.String).Value = Pass;
@@ -49,11 +53,36 @@ namespace TaskListWinf
             {
                 MessageBox.Show("У вас нет доступа");
             }
+            dBWork.CloseConnection();
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBoxLogin_Enter(object sender, EventArgs e)
+        {
+            if (textBoxLogin.Text == "Login")
+                textBoxLogin.Text = "";
+        }
+
+        private void maskedTxtBoxPass_Enter(object sender, EventArgs e)
+        {
+            if(maskedTxtBoxPass.Text == "Password")
+            maskedTxtBoxPass.Text = "";
+        }
+
+        private void textBoxLogin_Leave(object sender, EventArgs e)
+        {
+            if (textBoxLogin.Text == "")
+                textBoxLogin.Text = "Login";
+        }
+
+        private void maskedTxtBoxPass_Leave(object sender, EventArgs e)
+        {
+            if (maskedTxtBoxPass.Text == "")
+                maskedTxtBoxPass.Text = "Password";
         }
     }
 }
